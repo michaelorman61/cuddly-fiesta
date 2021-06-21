@@ -1,3 +1,4 @@
-module.exports = function() {
-  process.stdout.write('\n' + process.cwd()+'\n');
+module.exports = function(done) {
+  const output = '\n' + process.cwd()+'\n';
+  done(output);
 }

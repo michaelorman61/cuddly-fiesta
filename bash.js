@@ -3,24 +3,23 @@ const ls = require('./ls');
 const cat = require('./cat');
 
 const done = (output) => {
-
+  process.stdout.write(output);
+  process.stdout.write('\nprompt > ');
 }
 
-//process.stdout.write('promt > ');
+process.stdout.write('prompt > ');
 process.stdin.on('data', (data) =>{
 
   const cmd = data.toString().trim();
   process.stdout.write('You typed: ' + cmd + '\n');
   //process.stdout.write('\nprompt > ');
   if (cmd == 'pwd'){
-    pwd();
+    pwd(done);
   }
   else if(cmd == 'ls'){
-    ls();
+    ls(done);
   }
   else if(cmd.substring(0,3) == 'cat') {
-    cat(cmd.substring(4));
+    cat(cmd.substring(4), done);
   }
-
 });
-process.stdout.write('\nprompt > ');
