@@ -1,6 +1,7 @@
 const pwd = require('./pwd');
 const ls = require('./ls');
 const cat = require('./cat');
+const curl = require('./curl')
 
 const done = (output) => {
   process.stdout.write(output);
@@ -21,5 +22,8 @@ process.stdin.on('data', (data) =>{
   }
   else if(cmd.substring(0,3) == 'cat') {
     cat(cmd.substring(4), done);
+  }
+  else if(cmd.substring(0,4) == 'curl'){
+    curl(cmd.substring(5), done);
   }
 });
